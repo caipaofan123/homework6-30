@@ -1,17 +1,52 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>附加练习1</h1>
+    <D1/>
+
+    <hr>
+    <h1>附加练习2</h1>
+    <D2/>
+    
+    <hr>
+    <h1>附加练习3</h1>
+    <D3/>
+
+    <hr>
+    <h1>附加练习4</h1>
+    <D4/>
+
+    <hr>
+    <h1>附加练习5</h1>
+    <D5/>
+
+    <hr>
+    <h1>移动端-导航切换效果</h1>
+    <NavVue/>
+
+    <hr>
+    <h1>学生信息管理</h1>
+    <students/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import D1 from './components/附加练习1.vue'
+import D2 from './components/附加练习2.vue'
+import D3 from './components/附加练习3.vue'
+import D4 from './components/附加练习4.vue'
+import D5 from './components/附加练习5.vue'
+import NavVue from './components/Nav.vue'
+import students from './components/学生信息管理.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    D1,
+    D2,
+    D3,
+    D4,
+    D5,
+    NavVue,
+    students,
   }
 }
 </script>
