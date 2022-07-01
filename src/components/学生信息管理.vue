@@ -16,7 +16,7 @@
       </select>
     </div>
     <div>
-      <button @click="add">添加/修改</button>
+      <button @click="add">{{ isEdit ? '修改' : '添加' }}</button>
     </div>
     <div>
       <table border="1" cellpadding="10" cellspacing="0">
@@ -34,7 +34,7 @@
           <td>{{ item.gender }}</td>
           <td>
             <button @click="del(item.id)">删除</button>
-            <button @click="edit(item.id)">编辑</button>
+            <button @click="edit(item)">编辑</button>
           </td>
         </tr>
       </table>
@@ -45,7 +45,8 @@
 export default {
   data() {
     return {
-      flag: false,
+      currentId: '',
+      isEdit: false,
       name: '',
       age: '',
       gender: '',
@@ -59,15 +60,20 @@ export default {
   },
   methods: {
     add() {
-      if (this.name) {    
-        let index = this.list.findIndex((el) => el.name == this.name);
-        if (index != -1) {
-          this.list[index].name = this.name;
-          this.list[index].age = this.age;
-          this.list[index].gender = this.gender;
-          this.flag=false
-          return;
-        }
+      // if (this.name) {
+      if (this.isEdit) {
+        let index = this.list.findIndex((el) => el.id == this.currentId);
+        // if (index != -1) {
+        this.list[index].name = this.name;
+        this.list[index].age = this.age;
+        this.list[index].gender = this.gender;
+        this.isEdit = false;
+        this.currentId = '';
+        this.name = '';
+        this.age = '';
+        this.gender = '';
+        return;
+        // }
       }
       if (this.name == '' || this.age == '' || this.gender == '') {
         return alert('请输入完整信息');
@@ -85,12 +91,16 @@ export default {
       this.age = '';
       this.gender = '';
     },
-    edit(id) {
-
-      let index = this.list.findIndex((el) => el.id == id);
-      this.name = this.list[index].name;
-      this.age = this.list[index].age;
-      this.gender = this.list[index].gender;
+    edit(item) {
+      // let index = this.list.findIndex((el) => el.id == id);
+      // this.name = this.list[index].name;
+      // this.age = this.list[index].age;
+      // this.gender = this.list[index].gender;
+      this.name = item.name;
+      this.age = item.age;
+      this.gender = item.gender;
+      this.isEdit = true;
+      this.currentId = item.id;
     },
     del(id) {
       let index = this.list.findIndex((el) => el.id == id);
